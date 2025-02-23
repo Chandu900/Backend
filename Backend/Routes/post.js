@@ -12,7 +12,7 @@ router.get("/allposts", requireLogin, (req, res) => {
   let skip = req.query.skip;
     
   POST.find()
-    .populate("postedBy","_id name")
+    .populate("postedBy","_id name Photo")
     .populate("comments.postedBy", "_id name")
     .skip(parseInt(skip))
     .limit(parseInt(limit))
@@ -156,7 +156,7 @@ router.delete("/deletePost/:postId", requireLogin, (req, res) => {
 // to show following post
 router.get("/myfollowingpost", requireLogin, (req, res) => {
     POST.find({ postedBy: { $in: req.user.following } })
-        .populate("postedBy", "_id name")
+        .populate("postedBy", "_id name photo")
         .populate("comments.postedBy", "_id name")
         .then(posts => {
             res.json(posts)
