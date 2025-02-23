@@ -12,8 +12,8 @@ router.get("/allposts", requireLogin, (req, res) => {
   let skip = req.query.skip;
     
   POST.find()
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy", "_id name photo")
+    .populate("postedBy","_id name photo")
+    .populate("comments.postedBy", "_id name ")
     .skip(parseInt(skip))
     .limit(parseInt(limit))
     .sort("-createdAt")
