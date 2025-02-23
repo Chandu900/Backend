@@ -160,7 +160,7 @@ router.delete("/deletePost/:postId", requireLogin, (req, res) => {
 // to show following post
 router.get("/myfollowingpost", requireLogin, (req, res) => {
     POST.find({ postedBy: { $in: req.user.following } })
-        .populate("postedBy", "_id name")
+        .populate("postedBy", "_id name photo")
         .populate("comments.postedBy", "_id name")
         .then(posts => {
             res.json(posts)
