@@ -13,7 +13,11 @@ router.get("/allposts", requireLogin, (req, res) => {
     
   POST.find()
     .populate("postedBy","_id name photo")
+<<<<<<< HEAD
     .populate("comments.postedBy", "_id name")
+=======
+    .populate("comments.postedBy", "_id name ")
+>>>>>>> 62cbddd6ffc14ed594ad7f36b7df697b9d3e4b82
     .skip(parseInt(skip))
     .limit(parseInt(limit))
     .sort("-createdAt")
